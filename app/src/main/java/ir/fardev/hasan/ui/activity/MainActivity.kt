@@ -21,8 +21,20 @@ class MainActivity() : BaseActivity() {
         setContentView(R.layout.activity_main)
         showFragment(fragmentA)
         showFragment(fragmentB)
+        registerFragmentBackStackChanged()
 //        showFragment(fragmentA)
 
+    }
+
+    fun registerFragmentBackStackChanged()
+    {
+        Log.i(TAG, "registerFragmentBackStackChanged: ")
+        supportFragmentManager.addOnBackStackChangedListener {
+            Log.i(BASE_TAG, "registerFragmentBackStackChange  => onBackStackChanged ${supportFragmentManager.backStackEntryCount}")
+            if (supportFragmentManager.backStackEntryCount == 0) {
+                Log.i(BASE_TAG, "registerFragmentBackStackChanged => onBackStackChanged => zero") // tfinish()
+            }
+        }
     }
 
     fun showFragment(fragment :Fragment)
